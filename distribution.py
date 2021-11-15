@@ -16,7 +16,7 @@ class binomial:
         print(f"Pr(X > {target}) = {1 - stats.binom.cdf(target, self.n, self.p)}")
 
     def ppf(self, target):
-        print(f"Pr(X <= {stats.binom.ppf(target, self.n, self.p)}) >= {target}")
+        print(f"Pr(X <= {stats.binom.ppf(target, self.n, self.p)}) = {target}")
 
     def __str__(self):
         return f"Binomial Distribution\nX: number of successes, with n = {self.n} trials and prob of success p = {self.p}" \
@@ -30,13 +30,13 @@ class neg_binomial:
         self.p = p
 
     def left_cdf(self, target):
-        print(f"Pr(X <= {target}) = {stats.nbinom.cdf(target, self.k, self.p)}")
+        print(f"Pr(X <= {target}) = {stats.nbinom.cdf(target - self.k, self.k, self.p)}")
     
     def pmf(self, target):
-        print(f"Pr(X = {target}) = {stats.nbinom.pmf(target, self.k, self.p)}")
+        print(f"Pr(X = {target}) = {stats.nbinom.pmf(target - self.k, self.k, self.p)}")
     
     def right_cdf(self, target):
-        print(f"Pr(X > {target}) = {1 - stats.nbinom.cdf(target, self.k, self.p)}")
+        print(f"Pr(X > {target}) = {1 - stats.nbinom.cdf(target - self.k, self.k, self.p)}")
 
     def ppf(self, target):
         print(f"Pr(X <= {stats.nbinom.ppf(target, self.k, self.p) + self.k}) >= {target}")
@@ -44,7 +44,7 @@ class neg_binomial:
 
     def __str__(self):
         return f"Negative Binomial Distribution\nX: number of trials, with number of successes = {self.k} and prob of a success = {self.p}" \
-            + f"\nE(X) = k / p = {self.k / self.p}; V(X) = (1 - p)k / p^2 = {(1 - self.p) * k / (self.p * self.p)}"
+            + f"\nE(X) = k / p = {self.k / self.p}; V(X) = (1 - p)k / p^2 = {(1 - self.p) * self.k / (self.p * self.p)}"
 
 class poisson:
     
@@ -92,7 +92,7 @@ class normal:
     
     def __init__(self, mu, sigma):
         self.mu = mu
-        self.sigma_squared = sigma
+        self.sigma = sigma
 
     def left_cdf(self, target):
         print(f"Pr(X <= {target}) = {stats.norm.cdf(target, self.mu, self.sigma)}")
@@ -106,17 +106,17 @@ class normal:
     def ppf(self, target):
         print(f"Pr(X <= {stats.norm.ppf(target, self.mu, self.sigma)}) = {target}")
 
-    def ppf_standard(target):
-        print(f"Pr(Z >= {stats.norm.ppf(target, 0, 1)}) = {target}")
+    def ppf_standard(self, target):
+        print(f"Pr(Z >= {stats.norm.ppf(1 - target, 0, 1)}) = {target} where Z = (X - {self.mu}) / {self.sigma}")
 
     def __str__(self):
         return f"Normal Distribution\n" \
-            + f"E(X) = {self.mu}; V(X) = {self.sigma * sefl.sigma}"
+            + f"E(X) = {self.mu}; V(X) = {self.sigma * self.sigma}"
 
 class t:
     
     def __init__(self, dof):
-        self.deg_of_free = dof
+        self.dof = dof
 
     def left_cdf(self, target):
         print(f"Pr(X <= {target}) = {stats.t.cdf(target, self.dof)}")
@@ -137,7 +137,7 @@ class t:
 class chi_sq:
     
     def __init__(self, dof):
-        self.deg_of_free = dof
+        self.dof = dof
     
     def left_cdf(self, target):
         print(f"Pr(X <= {target}) = {stats.chi2.cdf(target, self.dof)}")
@@ -149,8 +149,8 @@ class chi_sq:
         print(f"Pr(X > {target}) = {1 - stats.chi2.cdf(target, self.dof)}")
     
     def ppf(self, target):
-        print(f"Pr(X <= {stats.chi2.ppf(target, self.dof)} = {target}")
-        print(f"Pr(X >= {stats.chi2.ppd(1 - target, self.dof)}) = {target}")
+        print(f"Pr(X <= {stats.chi2.ppf(target, self.dof)}) = {target}")
+        print(f"Pr(X >= {stats.chi2.ppf(1 - target, self.dof)}) = {target}")
 
     def __str__(self):
         return f"Chi-squared Distribution where degree of freedom  = {self.dof}"
@@ -177,9 +177,9 @@ class f:
     def __str__(self):
         return f"F-Distribution where degrees of freedom are {self.dof1} and {self.dof2}"
 
-p = binomial(10,0.4)
+p = f(12, 10)
 print(p)
-p.left_cdf(5)
-p.pmf(5)
-p.right_cdf(5)
+p.left_cdf(3)
+p.pdf(3)
+p.right_cdf(3)
 p.ppf(0.05)
