@@ -6,6 +6,7 @@ from distributions.negative_binomial import neg_binomial
 from distributions.normal import normal
 from distributions.poisson import poisson
 from distributions.t import t
+from stats.sample import sample_params
 
 p = f(12, 10)
 print(p)
@@ -13,3 +14,7 @@ p.left_cdf(3)
 p.pdf(3)
 p.right_cdf(3)
 p.ppf(0.05)
+print("-------------")
+
+samples = [10.2, 9.7, 10.1, 10.3, 10.1, 9.8, 9.9, 10.4, 10.3, 9.8]
+sample_params(samples)
