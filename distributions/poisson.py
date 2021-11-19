@@ -18,5 +18,6 @@ class poisson:
         print(f"Pr(X <= {stats.poisson.ppf(target, self.xlambda)}) >= {target}")
 
     def __str__(self):
-        return f"Poisson Distribution\nX: number of successes in a Poisson experiment." \
-            + f"\nE(X) = V(X) = lambda = {self.xlambda}"
+        return f"Poisson Distribution\nX: number of successes in a Poisson experiment.\n" \
+            + "Pr(X = x) = f(x) = e^(-x) * lambda^x / x! for x = 0, 1, 2...\n" \
+            + f"E(X) = V(X) = lambda = {self.xlambda}"

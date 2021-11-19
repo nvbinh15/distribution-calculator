@@ -23,4 +23,5 @@ class normal:
 
     def __str__(self):
         return f"Normal Distribution\n" \
+            + "f(x) = (1 / (sqrt(2pi) * sigma)) * exp(- (x - mu)^2/(2*sigma^2))\n" \
             + f"E(X) = {self.mu}; V(X) = {self.sigma * self.sigma}"

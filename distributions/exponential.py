@@ -19,4 +19,5 @@ class exponential:
 
     def __str__(self):
         return f"Exponential Distribution\n" \
+            + "f(x) = alpha * e^(-alpha*x) = (1/mu) * e^(-x/mu)\n" \
             + f"E(X) = lambda = 1 / alpha = {self.xlambda}; V(X) = lambda^2 = 1 / (alpha ^2) = {self.xlambda * self.xlambda}"

@@ -20,4 +20,5 @@ class binomial:
 
     def __str__(self):
         return f"Binomial Distribution\nX: number of successes, with n = {self.n} trials and prob of success p = {self.p}" \
+            + "Pr(X = x) = f(x) = nCx * p^x * (1 - p)^(n - x) for x = 0, 1, 2, ..., n" \
             + f"\nE(X) = np =  {self.n * self.p}; V(X) = np(1-p) = {self.n * self.p * (1 - self.p)}"

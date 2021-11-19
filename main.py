@@ -9,18 +9,9 @@ from distributions.t import t
 from stats.sample import sample_params
 from stats.discrete_random_variable import discrete_random_variable_params as discrete
 
-p = f(12, 10)
+
+# pmf = {0:0.05, 1:0.18, 2:0.15, 3:0.27, 4:0.19, 5:0.16}
+# discrete(pmf)
+
+p = exponential(5)
 print(p)
-p.left_cdf(3)
-p.pdf(3)
-p.right_cdf(3)
-p.ppf(0.05)
-print("-------------")
-
-samples = [10.2, 9.7, 10.1, 10.3, 10.1, 9.8, 9.9, 10.4, 10.3, 9.8]
-sample_params(samples)
-print("-------------")
-pmf = {2:0.01, 3:0.25, 4:0.4, 5:0.3, 6:0.04}
-discrete(pmf)
-
-
