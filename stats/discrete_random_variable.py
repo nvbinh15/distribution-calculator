@@ -2,7 +2,7 @@ def discrete_random_variable_params(pmf):
     expectation = 0
     second_moment = 0
     total_probability = sum(pmf[x] for x in pmf)
-    if (total_probability != 1):
+    if (total_probability - 1 >= 0.01):
         print(f"The total probability is not 1. ({total_probability})")
         return
     print(f"Probability: {total_probability}")
