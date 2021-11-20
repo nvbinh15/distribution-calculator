@@ -19,4 +19,7 @@ class chi_sq:
         print(f"Pr(X >= {stats.chi2.ppf(1 - target, self.dof)}) = {target}")
 
     def __str__(self):
-        return f"Chi-squared Distribution where degree of freedom  = {self.dof}"
+        return f"Chi-squared Distribution where degree of freedom  = {self.dof}\n" \
+            + "If Y is Chi-squared(n) then E(Y) = n and V(Y) = 2n\n" \
+            + "For large n, Chi-squared(n) approx N(n, 2n)"
+

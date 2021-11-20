@@ -19,4 +19,5 @@ class t:
         print(f"Pr(X >= {stats.t.ppf(1 - target, self.dof)}) = {target}")
 
     def __str__(self):
-        return f"t-Distribution where degree of freedom  = {self.dof}"
+        return f"t-Distribution where degree of freedom  = {self.dof}\n" \
+            + "If T ~ t(n) then E(T) = 0 and V(T) = n / (n - 2) for n > 2\n"
